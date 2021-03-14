@@ -24,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 try:
     from .local_settings import SECRET_KEY, DEBUG, ALLOWED_HOSTS
 except ImportError:
-    pass
+    SECRET_KEY = "placeholder"
+    DEBUG = True
+    ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -76,7 +78,9 @@ WSGI_APPLICATION = 'example_deployment_project.wsgi.application'
 try:
     from .local_settings import DATABASES
 except ImportError:
-    pass
+    DATABASES = {
+        'default': {'ENGINE': None},  # placeholder
+    }
 
 
 # Password validation
