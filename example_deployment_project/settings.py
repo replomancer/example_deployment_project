@@ -10,23 +10,21 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
+# See https://docs.djangoproject.com/en/3.1/howto/deployment/checkli
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'eflx3hv4b7x5-2f1##fbulvw1dhve(+frl(_*gmuh8##@m-na7'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+try:
+    from .local_settings import SECRET_KEY, DEBUG, ALLOWED_HOSTS
+except ImportError:
+    pass
 
 # Application definition
 
@@ -74,20 +72,11 @@ WSGI_APPLICATION = 'example_deployment_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'heroku_db',
-        'USER': 'postgres',
-        'PASSWORD': 'coderslab',
-    }
-}
 
 try:
-    from local_settings import DATABASES
+    from .local_settings import DATABASES
 except ImportError:
-    print("Missing local_settings.py")
-    raise
+    pass
 
 
 # Password validation
@@ -127,3 +116,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Configure Django App for Heroku.
+import django_on_heroku
+django_on_heroku.settings(locals())
