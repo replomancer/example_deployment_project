@@ -26,5 +26,5 @@ jobs:
         pycodestyle . --ignore=E501 --exclude=migrations
     - name: Automated tests
       run: |
-        python -m pip install pytest
+        python -m pip install pytest-django
         pytest
