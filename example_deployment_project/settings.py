@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-
+import django_on_heroku
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 
 # Quick-start development settings - unsuitable for production
@@ -123,5 +123,4 @@ STATIC_URL = '/static/'
 
 
 # Configure Django App for Heroku.
-import django_on_heroku
 django_on_heroku.settings(locals())

@@ -9,4 +9,3 @@ class Something(models.Model):
 
 class SomethingElse(models.Model):
     something = models.ForeignKey(Something, on_delete=models.CASCADE, null=True)
-
