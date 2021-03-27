@@ -24,6 +24,7 @@ jobs:
           - 5432:5432
 
     env:
+      ENGINE: django.db.backends.postgresql
       DATABASE_ENGINE: django.db.backends.postgresql
       DATABASE_NAME: github_actions
       DATABASE_USER: postgres
