@@ -1,4 +1,4 @@
-name: Linting and tests
+name: linting and tests
 on:
   push:
     branches:
@@ -24,6 +24,8 @@ jobs:
           - 5432:5432
 
     env:
+      DEBUG=True
+      SECRET_KEY='eflx3hv4b7x5-2f1##fbulvw1dhve(+frl(_*gmuh8##@m-na7'
       DATABASE_URL=postgres://postgres:postgres@localhost:5432/github_actions?sslmode=require
     steps:
     - uses: actions/checkout@v2
