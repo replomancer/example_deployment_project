@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'example_deployment_project.wsgi.application'
 SECRET_KEY = env.str('SECRET_KEY')
 
 DATABASES = {'default': env.db('DATABASE_URL')}
-
+print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

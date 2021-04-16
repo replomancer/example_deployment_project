@@ -26,7 +26,7 @@ jobs:
     env:
       DEBUG: True
       SECRET_KEY: 'eflx3hv4b7x5-2f1##fbulvw1dhve(+frl(_*gmuh8##@m-na7'
-      DATABASE_URL: postgres://postgres:postgres@localhost:5432/github_actions?sslmode=disable
+      DATABASE_URL: 'postgres://postgres:postgres@localhost:5432/github_actions?sslmode=disable'
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
