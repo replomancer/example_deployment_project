@@ -10,23 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import environ
 import django_on_heroku
 from pathlib import Path
 
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checkli
-# SECURITY WARNING: keep the secret key used in production secret!
-try:
-    from .local_settings import SECRET_KEY, DEBUG, ALLOWED_HOSTS
-except ImportError:
-    SECRET_KEY = "placeholder"
-    DEBUG = True
-    ALLOWED_HOSTS = []
+DEBUG = env.bool('DEBUG', default=False)
+TEMPLATE_DEBUG = DEBUG
+
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -70,17 +69,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'example_deployment_project.wsgi.application'
 
+SECRET_KEY = env.str('SECRET_KEY')
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-
-try:
-    from .local_settings import DATABASES
-except ImportError:
-    DATABASES = {
-        'default': {'ENGINE': None},  # placeholder
-    }
+DATABASES = {'default': env.db('DATABASE_URL')}
 
 
 # Password validation
@@ -119,6 +110,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+MEDIA_URL = env.str('MEDIA_URL', default='media/')
 STATIC_URL = '/static/'
 
 

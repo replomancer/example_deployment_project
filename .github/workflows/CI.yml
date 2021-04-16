@@ -24,13 +24,7 @@ jobs:
           - 5432:5432
 
     env:
-      ENGINE: django.db.backends.postgresql
-      DATABASE_ENGINE: django.db.backends.postgresql
-      DATABASE_NAME: github_actions
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: postgres
-      DATABASE_HOST: localhost
-      DATABASE_PORT: 5432
+      DATABASE_URL=postgres://postgres:postgres@localhost:5432/github_actions?sslmode=require
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
