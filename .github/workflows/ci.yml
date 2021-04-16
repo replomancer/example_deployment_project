@@ -2,7 +2,7 @@ name: linting and tests
 on:
   push:
     branches:
-    - main
+    - main, new
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
