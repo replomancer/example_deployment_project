@@ -20,7 +20,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-DEBUG = bool(os.getenv('DEBUG', False))
+DEBUG = (os.getenv('DEBUG') == 'True')
 TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'justsomerandomexample.herokuapp.com']
 
